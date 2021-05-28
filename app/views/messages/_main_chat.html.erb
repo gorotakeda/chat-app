@@ -1,53 +1,26 @@
 <div class="chat-header">
   <div class="group">
-   hogefuga
+   <%= @room.name %>
   </div>
   <div class="chat-end">
-   <a href="#">チャットを終了する</a>
+   <%= link_to "チャットを終了する" , room_path(@room), method: :delete %>
+   <%# 削除するチャットルームを区別するために、定義している@roomを引数にし、room_path(@room)と指定しましょう。 %>
+   <%# HTTPメソッドのdeleteを指定すると、roomsコントローラーのdestroyアクションが実行されます。 %>
   </div>
 </div>
 
 <div class="chat-main">
-  <div class="message">
-     <div class="up-message">
-       <div class="user-name">
-         Tom
-       </div>
-       <div class="chat-time">
-         2020/3/31(Wed) 12:43:30
-       </div>
-     </div>
-    <div class="under-message">
-      <div class="coment">  
-       おはよう
-     </div>
-    </div>
-  </div>
-  <div class="message">
-     <div class="up-message">
-       <div class="user-name">
-         Sim
-       </div>
-       <div class="chat-time">
-         2020/3/31(Wed) 12:43:30
-       </div>
-     </div>
-    <div class="under-message">
-      <div class="coment">  
-       こんばんは
-     </div>
-    </div>
-  </div>
+  <%= render partial: 'message', collection: @messages %>
+  <%# _message.html.erbを部分テンプレートとして、読み込むことができます。 %>
 </div>
 
-
-<div class="chat-form">
+<%= form_with model: [@room, @message], class: 'chat-form', local: true do |f| %>
   <div class="input-form">
-   <input type="text" placeholder="type a message" class="text-form">
+   <%= f.text_field :content, class: 'text-form', placeholder: 'type a message' %>
    <label class="image-form">
-     <span class="iamge-file">画像</span>
-     <input type="file" class="hidden">
+     <span class="image-file">画像</span>
+     <%= f.file_field :image, class: 'hidden' %>
     </label>
   </div>
- <input type="submit" value="送信" class="submit-form">
-</div>
+  <%= f.submit '送信', class: 'submit-form' %>
+<% end %>

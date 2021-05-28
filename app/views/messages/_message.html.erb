@@ -1,0 +1,19 @@
+<div class="message">
+     <div class="up-message">
+       <div class="user-name">
+         <%= message.user.name %>
+         <%# messagesテーブルのuser_idに紐付いているユーザー名を、取得しています。 %>
+       </div>
+       <div class="chat-time">
+         <%= l message.created_at %>
+         <%# messagesテーブルのcreated_atカラムから、投稿した時刻を取得しています。 %>
+         <%# lメソッドを使えば指定した現地時間に対応できます。 %>
+       </div>
+     </div>
+    <div class="under-message">
+      <div class="coment">  
+       <%= message.content %>
+       <%# messagesテーブルのcontentカラムから、メッセージの内容を取得しています。 %>
+     </div>
+    </div>
+  </div>

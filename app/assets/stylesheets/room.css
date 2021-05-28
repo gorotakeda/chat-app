@@ -89,3 +89,8 @@ select {
   height: 80px;
   width: 100%;
 }
+
+.field_with_errors {
+  display: contents;
+}
+/* display: contentsは新たに追加された要素(.field_with_errors)だけを非表示にしている */
