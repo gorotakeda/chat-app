@@ -1,19 +1,24 @@
 <div class="message">
      <div class="up-message">
        <div class="user-name">
+         <!-- 投稿したユーザー名情報を出力する -->
          <%= message.user.name %>
          <%# messagesテーブルのuser_idに紐付いているユーザー名を、取得しています。 %>
        </div>
        <div class="chat-time">
+         <!-- 投稿した時刻を出力する -->
          <%= l message.created_at %>
          <%# messagesテーブルのcreated_atカラムから、投稿した時刻を取得しています。 %>
          <%# lメソッドを使えば指定した現地時間に対応できます。 %>
        </div>
      </div>
     <div class="under-message">
-      <div class="coment">  
+      <div class="coment">
+       <!-- 投稿したメッセージ内容を記述する -->
        <%= message.content %>
        <%# messagesテーブルのcontentカラムから、メッセージの内容を取得しています。 %>
      </div>
-    </div>
+     <%= image_tag message.image.variant(resize: '500×500'), class: 'message-image' if message.image.attached? %>
+     <%# この記述によって、画像を表示できます。 %>
+    </div> 
   </div>
